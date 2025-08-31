@@ -1,0 +1,91 @@
+#[build-system]
+#requires = ["hatchling"]
+#build-backend = "hatchling.build"
+[build-system]
+requires = ["uv_build>=0.7.19,<0.8.0"]
+build-backend = "uv_build"
+
+
+[project]
+version = "0.1"
+name = "hatch-sample-1"
+#dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.11"
+#license = "MIT"
+keywords = []
+authors = [
+  { name = "Michele Gonella", email = "michele.gonella@miratech.ai" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    "pandas>=2.3.2",
+]
+
+[project.urls]
+Documentation = "https://github.com/michelemiraitech/python-coding/hatch-sample-1#readme"
+#Issues = "https://github.com/Michele Gonella/hatch-sample-1/issues"
+#Source = "https://github.com/Michele Gonella/hatch-sample-1"
+
+[tool.hatch.version]
+path = "src/hatch_sample_1/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/hatch_sample_1 tests}"
+
+[tool.hatch.envs.default]
+installer = "uv"
+
+[tool.coverage.run]
+source_pkgs = ["hatch_sample_1", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/hatch_sample_1/__about__.py",
+]
+
+[tool.coverage.paths]
+hatch_sample_1 = ["src/hatch_sample_1", "*/hatch-sample-1/src/hatch_sample_1"]
+tests = ["tests", "*/hatch-sample-1/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.11",
+]
+[tool.hatch.envs.docs]
+dependencies = [
+  "mkdocs"
+]
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --clean --strict"
+serve = "mkdocs serve --dev-addr localhost:8000"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/docs",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hatch_sample_1"]
+
+[tool.ruff.lint]
+extend-select = ["B"]

@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - about.md
+
+site_name: "Hatch Sample #1"
+theme: readthedocs
