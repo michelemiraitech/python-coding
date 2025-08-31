@@ -1,20 +1,14 @@
 # python-coding
 
 ## hatch-sample-1
-`
-cd hatch-sample-1/
 
-hatch env create
-
-hatch build
-
-uv ruffle
-
-hatch shell 
-
-pip show hatch-sample-1
-
-(type exit to quit the venv)`
+    cd hatch-sample-1/ 
+    hatch env create
+    hatch build
+    uv ruffle
+    hatch shell
+    pip show hatch-sample-1
+    (type exit to quit the venv)
 
 
 
